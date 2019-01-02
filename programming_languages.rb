@@ -1,20 +1,17 @@
 def reformat_languages(languages)
-  def reformat_languages(languages)
   # your code here
-  reformatted_languages = {}
-  languages.each do |style, languages|
-    languages.each do |language, language_data|
-      #if the language doesn't yet exist add it
-      if reformatted_languages[language] == nil
-        reformatted_languages[language] = {
-          type: language_data[:type],
-          style: [style]
-        }
+  new_hash = {}
+
+  languages.each do |style, language_hash|
+    language_hash.each do |language, attribute|
+      if new_hash.has_key?(language) != true
+        new_hash[language] = attribute
+        new_hash[language][:style] = []
+        new_hash[language][:style] << style
       else
-        reformatted_languages[language][:style] << style
+        new_hash[language][:style] << style
       end
     end
   end
-  reformatted_languages
-end
+  new_hash
 end
